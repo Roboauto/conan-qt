@@ -7,7 +7,7 @@ import sys
 
 import configparser
 from conans import ConanFile, tools
-from conans.errors import ConanInvalidConfiguration
+#from conans.errors import ConanInvalidConfiguration
 from conans.model import Generator
 
 
@@ -278,10 +278,7 @@ class QtConan(ConanFile):
         if not self.options.openssl:
             args += ["-no-openssl"]
         else:
-            if self.options["OpenSSL"].shared:
-                args += ["-openssl-linked"]
-            else:
-                args += ["-openssl"]
+            args += ["-openssl"]
             args += ["-I %s" % i for i in self.deps_cpp_info["OpenSSL"].include_paths]
             libs = self.deps_cpp_info["OpenSSL"].libs
             lib_paths = self.deps_cpp_info["OpenSSL"].lib_paths
